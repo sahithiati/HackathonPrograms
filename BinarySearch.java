@@ -1,0 +1,64 @@
+package assignments;
+
+import java.util.Scanner;
+
+public class BinarySearch {
+
+	public static void main(String[] args) {
+		// create an object of Main class
+	    	    
+        int array[]= new int[5];
+	    
+	    Scanner input = new Scanner(System.in);
+	    System.out.print("Enter 5 integer values to be searched: ");
+	    for(int i=0;i<5;i++) {
+	    array[i] = input.nextInt();
+	    }
+
+	   int n=5;
+	    // get input from user for element to be searched
+	    Scanner in = new Scanner(System.in);
+
+	    System.out.println("Enter element to be searched:");
+
+	    // element to be searched
+	    int element = in.nextInt();
+	    in.close();
+
+	    // call the binary search method
+	    // pass arguments: array, element, index of first and last element
+	    int result = binarySearch(array, element, 0, n - 1);
+	    if (result == -1)
+	      System.out.println("Not found");
+	    else
+	      System.out.println("Element found at index " + result);
+	  input.close();
+		
+	}
+	
+	public static int binarySearch(int array[], int element, int low, int high) {
+
+	    // Repeat until the pointers low and high meet each other
+	    while (low <= high) {
+
+	      // get index of mid element
+	      int mid = low + (high - low) / 2;
+
+	      // if element to be searched is the mid element
+	      if (array[mid] == element)
+	        return mid;
+
+	      // if element is less than mid element
+	      // search only the left side of mid
+	      if (array[mid] < element)
+	        low = mid + 1;
+
+	      // if element is greater than mid element
+	      // search only the right side of mid
+	      else
+	        high = mid - 1;
+	    }
+
+	    return -1;
+	  }
+}
